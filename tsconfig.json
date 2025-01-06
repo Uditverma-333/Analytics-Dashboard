@@ -2,11 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["app/*"],
       "@components/*": ["app/components/*"],
-      "@store/*": ["src/store/*"],
-      "@services/*": ["src/services/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@store/*": ["app/store/*"],
+      "@services/*": ["app/services/*"],
+      "@hooks/*": ["app/hooks/*"],
       "@headlessui/react": ["node_modules/@headlessui/react"],
       "@heroicons/react/outline": ["node_modules/@heroicons/react/outline"]
     },

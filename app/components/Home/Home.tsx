@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Sidebar from "@components/Sidebar/Sidebar";  // Adjust import path as necessary
-import Navbar from "@components/Navbar/Navbar";    // Adjust import path as necessary
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
