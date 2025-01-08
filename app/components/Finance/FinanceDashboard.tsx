@@ -1,6 +1,4 @@
 "use client";
-
-// FinanceDashboard.tsx
 import React, { useState } from "react";
 import StockSearch from "./StockSearch";
 import StockMetrics from "./StockMetrics";
@@ -9,9 +7,14 @@ import HistoricalDataSelector from "./HistoricalDataSelector";
 
 const FinanceDashboard = () => {
   const [selectedStock, setSelectedStock] = useState<string>("AAPL"); // Default to "AAPL"
+  const [selectedRange, setSelectedRange] = useState<string>("1d"); // Default to "1d"
 
   const handleStockSelect = (stockSymbol: string) => {
     setSelectedStock(stockSymbol); // Update the selected stock
+  };
+
+  const handleRangeChange = (range: string) => {
+    setSelectedRange(range); // Update the selected range
   };
 
   return (
@@ -21,8 +24,8 @@ const FinanceDashboard = () => {
       </h1>
       <StockSearch onSelectStock={handleStockSelect} />
       <StockMetrics stockSymbol={selectedStock} /> {/* Pass selectedStock */}
-      <StockChart stockSymbol={selectedStock} /> {/* Pass selectedStock */}
-      <HistoricalDataSelector />
+      <HistoricalDataSelector onRangeChange={handleRangeChange} />
+      <StockChart stockSymbol={selectedStock} range={selectedRange} /> {/* Pass range */}
     </div>
   );
 };

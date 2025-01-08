@@ -47,7 +47,7 @@ const StockSearch = ({ onSelectStock }) => {
         onChange={handleSearch}
         onKeyDown={handleKeyDown}
         placeholder="Search for stocks"
-        className="w-full px-4 py-2 border rounded shadow-md focus:outline-none focus:ring-2 focus:ring-primary"
+        className="w-full px-4 py-2 border rounded shadow-md focus:outline-none focus:ring-2 focus:ring-primary text-black dark:text-black"
       />
       {suggestions.length > 0 && (
         <ul className="absolute z-10 bg-white dark:bg-darkModeGray border border-neutral-light dark:border-neutral-dark rounded shadow-lg w-full max-h-48 overflow-auto">

@@ -17,38 +17,30 @@ import {
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
 interface StockChartProps {
-  stockSymbol: string; // Accept stockSymbol as a prop
+  stockSymbol: string;
+  range: string; // Accept the selected range as a prop
 }
 
-const StockChart: React.FC<StockChartProps> = ({ stockSymbol }) => {
-  const [chartData, setChartData] = useState<{
-    labels: string[];
-    datasets: { label: string; data: string[]; borderColor: string; fill: boolean }[];
-  } | null>(null);
+const StockChart: React.FC<StockChartProps> = ({ stockSymbol, range }) => {
+  const [chartData, setChartData] = useState<any>(null);
 
   useEffect(() => {
     const fetchChart = async () => {
       try {
-        const data = await fetchStockChartData(stockSymbol); // Use the stockSymbol prop
-        if (data && data.labels && data.datasets) {
-          setChartData(data); // Only set data if it's valid
-        } else {
-          setChartData(null); // Handle empty or invalid data
-        }
+        const data = await fetchStockChartData(stockSymbol, range);
+        setChartData(data);
       } catch (error) {
         console.error("Error fetching chart data:", error);
-        setChartData(null); // Handle fetch errors
+        setChartData(null);
       }
     };
-    fetchChart();
-  }, [stockSymbol]); // Re-fetch data when stockSymbol changes
 
-  // Ensure chartData is valid before using it in the Line component
-  const isChartDataValid = chartData && chartData.labels && chartData.datasets;
+    fetchChart();
+  }, [stockSymbol, range]); // Re-fetch data when stockSymbol or range changes
 
   return (
     <div className="p-6 bg-white dark:bg-darkModeGray shadow-card rounded-lg">
-      {isChartDataValid ? (
+      {chartData ? (
         <Line
           data={chartData}
           options={{
@@ -75,3 +67,4 @@ const StockChart: React.FC<StockChartProps> = ({ stockSymbol }) => {
 };
 
 export default StockChart;
+
